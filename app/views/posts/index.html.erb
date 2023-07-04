@@ -2,15 +2,18 @@
 
 <h1>Posts</h1>
 
-<div id="posts">
+
   <% @posts.each do |post| %>
-    <%= render post %>
+    <tr>
+            <td><%= post.username %></td>
+            <td><%= post.descripcion %></td>
+            <td></td>
+        </tr>
     <p>
       <%= link_to "Show this post", post %>
     </p>
     
   <% end %>
   <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
-</div>
 
 <%= link_to "New post", new_post_path %>
