@@ -1,9 +1,14 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
-
+  
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.all)
+    
+    if params[:query_text].present?
+      @posts = @posts.search_full_text(params[:query_text])
+      end 
+      #@pagy, @posts = (Post.all)
+    #@posts = Post.all
   end
 
   # GET /posts/1 or /posts/1.json
